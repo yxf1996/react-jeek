@@ -14,7 +14,6 @@ export default function Login() {
       navigate('/', { replace: true })
       message.success('登录成功')
     } catch (e) {
-      console.log(e)
       message.error(e.resoponse?.data?.message || '登录失败')
     }
   }

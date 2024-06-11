@@ -1,10 +1,17 @@
 import React from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import { Navigate, createBrowserRouter } from 'react-router-dom'
 import Login from '@/pages/Login'
 import Layout from '@/pages/Layout'
 import { AuthRoute } from '@/components/AuthRoute'
+import Home from '@/pages/Home'
+import ContentManagement from '@/pages/contentManagement'
+import PublishArticle from '@/pages/publishArticle'
 
 const router = [
+  {
+    path: '/',
+    element: <Navigate to="/home" replace />,
+  },
   {
     path: '/',
     element: (
@@ -12,6 +19,21 @@ const router = [
         <Layout />
       </AuthRoute>
     ),
+    children: [
+      {
+        path: 'home',
+        element: <Home />,
+        index: true,
+      },
+      {
+        path: 'publish',
+        element: <PublishArticle />,
+      },
+      {
+        path: 'article',
+        element: <ContentManagement />,
+      },
+    ],
   },
   {
     path: '/login',

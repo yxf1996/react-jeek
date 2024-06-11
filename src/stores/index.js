@@ -1,10 +1,12 @@
 import LoginStore from './modules/loginStore'
+import UserInfoStore from './modules/userInfoStore'
 import React from 'react'
 
 class RootStore {
   //组合模块store
   constructor() {
     this.loginStore = new LoginStore()
+    this.userInfoStore = new UserInfoStore()
   }
 }
 //导入useStore方法供组件使用数据

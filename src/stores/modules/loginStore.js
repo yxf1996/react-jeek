@@ -1,6 +1,6 @@
 import { http } from '@/utils'
 import { makeAutoObservable } from 'mobx'
-import { getToken, setToken } from '@/utils/token'
+import { getToken, removeToken, setToken } from '@/utils/token'
 
 class LoginStore {
   //初始化token
@@ -11,10 +11,14 @@ class LoginStore {
   //登录
   login = async ({ mobile, code }) => {
     const res = await http.post('/authorizations', { mobile, code })
-    console.log(res, '11')
     this.token = res.data.data.token
     //持久化token
     setToken(this.token)
+  }
+  //退出登录
+  loginOut = () => {
+    this.token = ''
+    removeToken()
   }
 }
 export default LoginStore

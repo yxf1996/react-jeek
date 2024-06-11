@@ -1,10 +1,22 @@
 import React from 'react'
-import { Button, Checkbox, Form, Input, Card } from 'antd'
+import { useNavigate } from 'react-router-dom'
+import { Button, Checkbox, Form, Input, Card, message } from 'antd'
 import logo from '@/assets/logo.png'
 import './index.scss'
+import { useStore } from '@/stores'
 export default function Login() {
-  const onFinish = (values) => {
-    console.log('Success:', values)
+  const navigate = useNavigate()
+  const { loginStore } = useStore()
+  const onFinish = async (values) => {
+    const { mobile, code } = values
+    try {
+      await loginStore.login({ mobile, code })
+      navigate('/', { replace: true })
+      message.success('登录成功')
+    } catch (e) {
+      console.log(e)
+      message.error(e.resoponse?.data?.message || '登录失败')
+    }
   }
   return (
     <div className="login">
@@ -30,7 +42,7 @@ export default function Login() {
         >
           <Form.Item
             label="手机号"
-            name="mobole"
+            name="mobile"
             rules={[
               {
                 required: true,

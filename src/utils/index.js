@@ -1,2 +1,3 @@
 import { http } from '@/utils/http'
-export { http }
+import { getToken, removeToken, setToken } from '@/utils/token'
+export { http, getToken, removeToken, setToken }

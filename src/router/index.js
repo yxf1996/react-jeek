@@ -2,11 +2,16 @@ import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import Login from '@/pages/Login'
 import Layout from '@/pages/Layout'
+import { AuthRoute } from '@/components/AuthRoute'
 
 const router = [
   {
     path: '/',
-    element: <Layout />,
+    element: (
+      <AuthRoute>
+        <Layout />
+      </AuthRoute>
+    ),
   },
   {
     path: '/login',

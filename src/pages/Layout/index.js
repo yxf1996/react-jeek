@@ -35,6 +35,7 @@ const GeekLayout = () => {
   const [selectedKey, setSelectedKey] = useState('/home')
   const handlemenuClick = ({ key }) => {
     setSelectedKey(key)
+    navigate(key)
   }
   const handleConfirm = () => {
     loginStore.loginOut()
